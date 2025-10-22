@@ -35,4 +35,8 @@ COPY . /app/
 EXPOSE ${PORT}
 HEALTHCHECK --interval=30s --timeout=3s --start-period=30s --retries=3 \
     CMD curl -f http://localhost:${PORT}/health || exit 1
+
+RUN useradd -m appuser
+USER appuser
+
 CMD ["./entrypoint.sh"]
